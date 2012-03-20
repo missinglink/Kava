@@ -10,4 +10,7 @@ require_once $directoryRoot . '/lib/Doctrine/Common/ClassLoader.php';
 spl_autoload_register( array( new ClassLoader( 'Kava', $directoryRoot . 'lib' ), 'loadClass' ) );
 spl_autoload_register( array( new ClassLoader( 'Doctrine', $directoryRoot . 'lib' ), 'loadClass' ) );
 
-unset( $directoryRoot );
+if( !class_exists( '\HttpRequest' ) )
+{
+    throw new \Exception( '!!! Missing Dependency pecl_http !!!' );
+}

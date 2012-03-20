@@ -1,18 +1,15 @@
 <?php
 
-namespace Kava;
-
 require_once 'autoloader.php';
 
-\error_reporting( \E_ALL | \E_STRICT );
-\ini_set( 'error_reporting', 'On' );
+error_reporting( \E_ALL );
+ini_set( 'display_errors', 'On' );
+ini_set( 'html_errors', 'Off' );
 
-$gateway    = new CGIGateway;
-$request    = new Request(
-                    $gateway->getRequestURL(),
-                    $gateway->getRequestHeaders(),
-                    $gateway->getRequestBody()
-              );
+$request = new \Kava\HTTP\Request;
+
+$gateway = new \Kava\HTTP\Gateway\WebServer;
+$gateway->update( $request );
 
 echo '<pre>';
-var_dump( $request );
+var_dump( $request, $request->getHeaders(), $request->getQueryData(), $request->getBody() );

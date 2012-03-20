@@ -2,88 +2,56 @@
 
 namespace Kava\HTTP;
 
-class URL implements Concept\URLObject
+class URL implements Concept\Stringable
 {
-    /** @var string $urlString **/
-    protected $urlString;
-
-    /** @var string $path **/
-    protected $path;
-
-    /** @var string $query **/
-    protected $query;
-    
-    /**
-     * @param string $url
-     * @example http://username:password@hostname/path?arg=value#anchor
-     */
-    public function __construct( $url = null )
-    {
-        if( is_string( $url ) )
-        {
-            $this->urlString = $url;
-            
-            $this->parseUrl( $url );
-        }
-    }
+    public $scheme;
+    public $host;
+    public $port;
+    public $user;
+    public $pass;
+    public $path;
+    public $query;
+    public $fragment;
 
     /**
-     * Get the assembled URL as a string
+     * Get the assembled URL as a stringt
      *
      * @return string
-     * @example 'http://username:password@hostname/path?arg=value#anchor'
+     * @example 'http://username:password@hostname:port/path?arg=value#anchor'
      */
     public function __toString()
     {
-        return $this->urlString;
+        return http_build_url( (array) $this );
     }
-
+    
     /**
-     * @param string $url
+     * Parse a URL 
+     * 
+     * @param string $urlString
+     * 
      * @example http://username:password@hostname/path?arg=value#anchor
+     * @return \Kava\HTTP\URL 
      */
-    protected function parseUrl( $url )
+    public static function factory( $urlString, \ArrayObject $httpHeaders = null )
     {
-        if( $p = parse_url( $url ) )
+        $url           = new self;
+        $url->scheme   = (string) parse_url( $urlString, \PHP_URL_SCHEME );
+        $url->host     = (string) parse_url( $urlString, \PHP_URL_HOST );
+        $url->port     = (string) parse_url( $urlString, \PHP_URL_PORT );
+        $url->user     = (string) parse_url( $urlString, \PHP_URL_USER );
+        $url->pass     = (string) parse_url( $urlString, \PHP_URL_PASS );
+        $url->path     = (string) parse_url( $urlString, \PHP_URL_PATH );
+        $url->query    = (string) parse_url( $urlString, \PHP_URL_QUERY );
+        $url->fragment = (string) parse_url( $urlString, \PHP_URL_FRAGMENT );
+        
+        if( empty( $url->host ) )
         {
-            $this->path  = isset( $p[ 'path' ] )  ? $p[ 'path' ]  : null;
-            $this->query = isset( $p[ 'query' ] ) ? $p[ 'query' ] : null;
+            if( isset( $httpHeaders[ 'Host' ] ) )
+            {
+                $url->host = $httpHeaders[ 'Host' ];
+            }
         }
-    }
-
-    /**
-     * @return string
-     * @example '/about'
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    /**
-     * @return string
-     * @param 'bob'
-     */
-    public function setPath( $path )
-    {
-        $this->path = $path;
-    }
-
-    /**
-     * @return string
-     * @example 'foo=bar&bar=baz'
-     */
-    public function getQuery()
-    {
-        return $this->query;
-    }
-
-    /**
-     * @return string
-     * @param 'bob'
-     */
-    public function setQuery( $query )
-    {
-        $this->query = $query;
+        
+        return $url;
     }
 }
