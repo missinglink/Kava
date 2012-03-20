@@ -2,9 +2,6 @@
 
 namespace Kava\HTTP;
 
-require_once 'PHPUnit/Framework.php';
-require_once dirname( __FILE__ ) . '/../../../../lib/Kava/HTTP/URL.php';
-
 class URLTest extends \PHPUnit_Framework_TestCase
 {
     public function testParseFullyQualifiedURL()

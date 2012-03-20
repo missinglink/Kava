@@ -2,10 +2,6 @@
 
 namespace Kava\HTTP;
 
-require_once 'PHPUnit/Framework.php';
-require_once dirname( __FILE__ ) . '/../../../../lib/Kava/HTTP/Request.php';
-require_once dirname( __FILE__ ) . '/../../../../lib/Kava/HTTP/URL.php';
-
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
     public static function urlProvider()
