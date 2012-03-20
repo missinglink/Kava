@@ -8,7 +8,7 @@ before_install:
     - sudo apt-get install libmagic-dev libcurl3 curl php5-curl > /dev/null
     - wget http://pecl.php.net/get/pecl_http-1.7.3.tgz
     - tar -xzf pecl_http-1.7.3.tgz > /dev/null
-    - sh -c "cd pecl_http-1.7.3 && phpize && ./configure && make && sudo make install" > /dev/null
+    - sh -c "cd pecl_http-1.7.3 && phpize > /dev/null && ./configure > /dev/null && make > /dev/null && sudo make install > /dev/null"
     - echo "extension=http.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 script: phpunit
