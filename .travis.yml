@@ -5,11 +5,10 @@ php:
 
 before_install:
     - git submodule --quiet update --init --recursive
-    - sudo apt-cache search libmagic
     - sudo apt-get install libmagic-dev libcurl3 curl php5-curl
     - wget http://pecl.php.net/get/pecl_http-2.0.0dev8.tgz
     - tar -xzf pecl_http-2.0.0dev8.tgz
-    - sh -c "cd pecl_http-2.0.0dev8 && phpize && ./configure && make && sudo make install"
+    - sh -c "cd pecl_http-2.0.0dev8 && phpize && ./configure && make && sudo make install" 2> /dev/null
     - echo "extension=http.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 script: phpunit
