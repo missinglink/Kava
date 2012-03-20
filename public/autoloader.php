@@ -4,11 +4,17 @@ namespace Autoloader;
 
 $directoryRoot = dirname( dirname( __FILE__ ) ) . \DIRECTORY_SEPARATOR;
 
-/** Doctrine Autoloader **/
-use \Doctrine\Common\ClassLoader;
-require_once $directoryRoot . '/lib/Doctrine/Common/ClassLoader.php';
-spl_autoload_register( array( new ClassLoader( 'Kava', $directoryRoot . 'lib' ), 'loadClass' ) );
-spl_autoload_register( array( new ClassLoader( 'Doctrine', $directoryRoot . 'lib' ), 'loadClass' ) );
+/**
+ * Symfony Autoloader
+ * 
+ * An excellent general purpose autoloader.
+ */
+use \Symfony\Component\ClassLoader\UniversalClassLoader;
+require_once $directoryRoot . '/lib/ClassLoader/UniversalClassLoader.php';
+
+$classLoader = new UniversalClassLoader;
+$classLoader->registerNamespace( 'Kava', $directoryRoot . 'lib' );
+$classLoader->register();
 
 if( !class_exists( '\HttpRequest' ) )
 {
