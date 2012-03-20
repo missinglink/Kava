@@ -23,7 +23,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">lib</directory>
             <exclude>
-                <directory suffix=".php">lib/Doctrine</directory>
+                <directory suffix=".php">lib/ClassLoader</directory>
                 <directory suffix=".php">public</directory>
             </exclude>
         </whitelist>
