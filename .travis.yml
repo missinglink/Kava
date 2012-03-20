@@ -8,6 +8,6 @@ before_install:
     - wget http://pecl.php.net/get/pecl_http-2.0.0dev8.tgz
     - tar -xzf pecl_http-2.0.0dev8.tgz
     - sh -c "cd pecl_http-2.0.0dev8 && phpize && ./configure && make && sudo make install"
-    - echo "extension=pecl_http.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+    - echo "extension=http.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 script: phpunit
