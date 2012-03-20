@@ -5,6 +5,7 @@ php:
 
 before_install:
     - git submodule --quiet update --init --recursive
+    - sudo apt-get install php-pear
     - sudo pecl install pecl_http
 
 script: phpunit
