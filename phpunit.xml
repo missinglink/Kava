@@ -3,6 +3,7 @@
     bootstrap="public/autoloader.php"
     colors="true"
     backupGlobals="false"
+    strict="false"
     verbose="true"
     convertErrorsToExceptions="false"
     convertNoticesToExceptions="false"
