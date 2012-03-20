@@ -5,7 +5,7 @@ php:
 
 before_install:
     - git submodule --quiet update --init --recursive > /dev/null
-    - sudo apt-get install libmagic-dev libcurl3 curl php5-curl > /dev/null
+    - sudo apt-get install libmagic-dev > /dev/null
     - wget http://pecl.php.net/get/pecl_http-1.7.3.tgz > /dev/null 2> /dev/null
     - tar -xzf pecl_http-1.7.3.tgz > /dev/null
     - sh -c "cd pecl_http-1.7.3 && phpize && ./configure && make && sudo make install" > /dev/null 2> /dev/null 
