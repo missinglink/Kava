@@ -15,8 +15,3 @@ require_once $directoryRoot . '/lib/ClassLoader/UniversalClassLoader.php';
 $classLoader = new UniversalClassLoader;
 $classLoader->registerNamespace( 'Kava', $directoryRoot . 'lib' );
 $classLoader->register();
-
-if( !class_exists( '\HttpRequest' ) )
-{
-    throw new \Exception( '!!! Missing Dependency pecl_http !!!' );
-}
