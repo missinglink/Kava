@@ -16,7 +16,7 @@ class Router extends Broadcaster implements Client\Recipient
         $this->proxy = $recipient;
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         if( $this->storage->contains( $sender ) )
         {

@@ -18,10 +18,10 @@ class Host implements Client\Recipient, Client\Sender
         var_dump( 'SEND FROM: ' . $this->getInfo( $this ) . ' TO ' . $this->getInfo( $recipient ) );
         var_dump( $message );
         
-        $recipient->receive( $this, $message );
+        $this->message( $recipient->message( $this, $message ) );
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         var_dump( 'RECIEVE FROM: ' . $this->getInfo( $sender ) . ' TO ' . $this->getInfo( $this ) );
         var_dump( $message );

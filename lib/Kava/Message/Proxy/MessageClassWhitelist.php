@@ -10,13 +10,13 @@ class MessageClassWhitelist extends Message\Transmission\Proxy implements Client
 {
     private $whitelist;
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         foreach( $this->whitelist as $className )
         {
             if( is_a( $message, $className ) )
             {
-                return $this->getProxy()->receive( $sender, $message );
+                return $this->getProxy()->message( $sender, $message );
             }
         }
     }

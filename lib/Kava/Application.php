@@ -11,7 +11,7 @@ class Application implements Client\Recipient, Client\Sender
         $recipient->receive( $this, $message );
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
     }
 }

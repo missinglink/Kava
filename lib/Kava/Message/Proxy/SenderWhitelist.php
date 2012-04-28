@@ -17,11 +17,11 @@ class SenderWhitelist extends Message\Transmission\Proxy implements Client\Recip
         $this->whitelist = new Store\RecipientStore;
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         if( $this->whitelist->contains( $sender ) )
         {
-            return $this->getProxy()->receive( $sender, $message );
+            return $this->getProxy()->message( $sender, $message );
         }
     }
     

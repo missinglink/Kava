@@ -14,13 +14,13 @@ class Broadcaster implements Client\Recipient
         $this->storage = $storage;
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         foreach( $this->storage as $client )
         {
             if( $client !== $sender )
             {
-                $client->receive( $sender, $message );
+                $client->message( $sender, $message );
             }
         }
     }

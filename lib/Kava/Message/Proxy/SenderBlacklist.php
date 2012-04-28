@@ -17,11 +17,11 @@ class SenderBlacklist extends Message\Transmission\Proxy implements Client\Recip
         $this->blacklist = new Store\RecipientStore;
     }
     
-    public function receive( Client\Sender $sender, Message $message )
+    public function message( Client\Sender $sender, Message $message )
     {
         if( !$this->blacklist->contains( $sender ) )
         {
-            return $this->getProxy()->receive( $sender, $message );
+            return $this->getProxy()->message( $sender, $message );
         }
     }
     

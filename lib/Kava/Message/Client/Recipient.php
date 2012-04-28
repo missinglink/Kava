@@ -6,5 +6,5 @@ use Kava\Message;
 
 interface Recipient
 {
-    public function receive( Sender $sender, Message $message );
+    public function message( Sender $sender, Message $message );
 }
